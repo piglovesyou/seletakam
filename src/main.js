@@ -1,9 +1,34 @@
 (function() {
-  var defer, main, timediff,
+  var defer, main, now, reduce, timediff,
     __slice = Array.prototype.slice;
 
-  Date.now = Date.now || function() {
+  now = Date.now || function() {
     return (new Date).getTime();
+  };
+
+  reduce = Array.prototype.reduce || function(accumulator) {
+    var curr, i, l;
+    if (this === null || this === undefined) {
+      throw new TypeError("Object is null or undefined");
+    }
+    i = 0;
+    l = this.length >> 0;
+    curr = void 0;
+    if (typeof accumulator !== "function") {
+      throw new TypeError("First argument is not callable");
+    }
+    if (arguments.length < 2) {
+      if (l === 0) throw new TypeError("Array length is 0 and no second argument");
+      curr = this[0];
+      i = 1;
+    } else {
+      curr = arguments[1];
+    }
+    while (i < l) {
+      if (i in this) curr = accumulator.call(undefined, curr, this[i], i, this);
+      ++i;
+    }
+    return curr;
   };
 
   defer = function() {
@@ -27,11 +52,11 @@
     d = 0;
     return {
       start: function() {
-        return t = Date.now();
+        return t = now();
       },
       stop: function() {
         if (t === -1) throw new Error('umm..');
-        d = Date.now() - t;
+        d = now() - t;
         t = -1;
         return d;
       }
@@ -55,9 +80,9 @@
       }, function() {
         var result;
         if (diff.length >= times) {
-          result = Math.round(diff.reduce(function(a, b) {
+          result = Math.round(reduce.call(diff, (function(a, b) {
             return (a + b) / 2;
-          }));
+          })));
           return alert("avarage: " + result + " ms");
         }
       });
