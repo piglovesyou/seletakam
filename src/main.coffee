@@ -19,7 +19,6 @@ reduce = Array::reduce or (accumulator) ->
     ++i
   curr
 
-
 defer = (args...) ->
   times = args.length - 1
   i = 0
