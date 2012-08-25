@@ -38,9 +38,9 @@ main = ( ->
   (_main = -> 
     defer(->
       document.body.style.display = 'none'
-      timediff.start()
     , ->
       document.body.style.display = 'block'
+      timediff.start()
     , ->
       diff.push timediff.stop()
       _main()  if ++j < times
