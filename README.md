@@ -1,9 +1,11 @@
 ## Seletakam
-A bookmarklet of performance test tool to measure CSS reflow time.
+![capture](https://raw.github.com/piglovesyou/seletakam/master/src/cap.png)
+
+A reflow stress checker.
 
 
 ### How to use
-Copy [this script](https://raw.github.com/piglovesyou/seletakam/master/bookmarklet.txt) and create bookmark on your browser with it.
+**[Copy this script](https://raw.github.com/piglovesyou/seletakam/master/bookmarklet.txt)** and create bookmark on your browser with it.
 
 Go to a website that you want to check, run the script.
 
