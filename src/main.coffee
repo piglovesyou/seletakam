@@ -1,5 +1,5 @@
 
-now = Date.now or -> (new Date).getTime()
+now = Date.now or -> (new Date).getTime
 
 avarage = (arr) ->
   sum = 0
